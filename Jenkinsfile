@@ -93,10 +93,11 @@ pipeline {
                         returnStdout: true
                     ).trim()
 
+                    sh "git branch -D ${params.GIT_Branch} || true"
+                    sh "git checkout -b ${params.GIT_Branch} || true"
                     sh "mvn versions:set -DnewVersion=${MAJOR_VERSION}.${UPDATED_VERSION}-SNAPSHOT"
                     sh "git config user.email xxxxx@sample.com"
                     sh "git config user.name xxxxx"
-                    sh "git checkout -b ${params.GIT_Branch}"
                     sh "git commit -a -m 'Triggered Build: update pom version'"
                     sh "git push -u origin ${params.GIT_Branch}"
                 }
