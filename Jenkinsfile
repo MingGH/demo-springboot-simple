@@ -94,8 +94,8 @@ pipeline {
                     ).trim()
 
                     sh "mvn versions:set -DnewVersion=${MAJOR_VERSION}.${UPDATED_VERSION}-SNAPSHOT"
-                    sh "git config user.email asher@runnable.run"
-                    sh "git config user.name asher"
+                    sh "git config user.email xxxxx@sample.com"
+                    sh "git config user.name xxxxx"
                     sh "git checkout -b ${params.GIT_Branch}"
                     sh "git commit -a -m 'Triggered Build: update pom version'"
                     sh "git push -u origin ${params.GIT_Branch}"
