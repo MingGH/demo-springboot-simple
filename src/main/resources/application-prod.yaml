@@ -1,0 +1,3 @@
+app:
+  config:
+    env: prod
