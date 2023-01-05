@@ -14,11 +14,15 @@ APP_NAME=${APP}-${PROFILE}
 APP_HOME=/dockerData/runnable-run/${APP_NAME}
 APP_OUT=${APP_HOME}/logs
 
-APP_NAMESPACE=
+# 阿里云仓库命名空间
+APP_NAMESPACE=runnable-run
+# 推送至阿里云仓库的地址
 APP_REGISURL=
-APP_USERNAME=
-APP_PASSWORD=
 APP_RESP=${APP_REGISURL}/${APP_NAMESPACE}/${APP}
+# 阿里云账号
+APP_USERNAME=
+# 阿里云配置个人容器镜像服务时，设置的密码
+APP_PASSWORD=
 
 mkdir -p ${APP_HOME}
 mkdir -p ${APP_HOME}/logs
@@ -37,7 +41,7 @@ start_application() {
      --security-opt seccomp:unconfined \
      -dit \
      --name ${APP_NAME} \
-     -p ${APP_PORT}:${APP_PORT} \
+     -p ${APP_PORT}:${DEFAULT_PORT} \
      --pid=host \
      -v ${APP_OUT}:/usr/local/${APP_NAME}/logs \
      ${APP_RESP}:${TAGNAME} \
